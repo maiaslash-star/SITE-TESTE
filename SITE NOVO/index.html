@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Plataforma de fiscalização cidadã. Denuncie problemas, acompanhe soluções e transforme Mossoró." />
+  <meta name="keywords" content="fiscalização,denúncia,Mossoró,cidadania,transparência,Cabo Deyvison" />
+  <meta property="og:title" content="Cabo Deyvison | Fiscalização Cidadã - Mossoró" />
+  <meta property="og:description" content="Plataforma de fiscalização cidadã. Denuncie problemas, acompanhe soluções e transforme Mossoró." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cabodeyvison.com.br" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Cabo Deyvison | Fiscalização Cidadã — Mossoró</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="loading">
+
+  <!-- ═══════════════ LOADER ═══════════════ -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loaderBar"></div>
+      </div>
+      <div class="loader-counter"><span id="loaderNum">0</span><span>%</span></div>
+      <div class="loader-label">CARREGANDO MISSÃO</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CURSOR ═══════════════ -->
+  <div id="cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-cd">CD</span>
+      <span class="logo-text">CABO DEYVISON</span>
+    </a>
+    <div class="nav-links">
+      <a href="#sobre" class="nav-link" data-text="Sobre">Sobre</a>
+      <a href="#propostas" class="nav-link" data-text="Propostas">Propostas</a>
+      <a href="#fiscalizacao" class="nav-link" data-text="Fiscalização">Fiscalização</a>
+      <a href="#casos" class="nav-link" data-text="Casos">Casos</a>
+    </div>
+    <a href="/denuncia" class="nav-cta">
+      <span>Denunciar</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#sobre" class="mobile-link">01 — Sobre</a>
+      <a href="#propostas" class="mobile-link">02 — Propostas</a>
+      <a href="#fiscalizacao" class="mobile-link">03 — Fiscalização</a>
+      <a href="#casos" class="mobile-link">04 — Casos</a>
+      <a href="/denuncia" class="mobile-cta">Fazer Denúncia →</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section id="hero">
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">
+        <span class="badge-dot"></span>
+        <span>Vereador · Mossoró · RN</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-line reveal-up" style="--d:0.1s">
+          <span class="hero-word">MOSSORÓ</span>
+        </span>
+        <span class="hero-line reveal-up" style="--d:0.25s">
+          <span class="hero-word italic">vista</span>
+          <span class="hero-word">por</span>
+          <span class="hero-word">quem</span>
+        </span>
+        <span class="hero-line reveal-up" style="--d:0.4s">
+          <span class="hero-word accent">fiscaliza</span>
+        </span>
+        <span class="hero-line reveal-up" style="--d:0.55s">
+          <span class="hero-word">de</span>
+          <span class="hero-word italic accent-2">verdade.</span>
+        </span>
+      </h1>
+
+      <div class="hero-sub reveal-up" style="--d:0.7s">
+        <p>Denuncie problemas. Acompanhe soluções.<br>Transforme sua cidade.</p>
+      </div>
+
+      <div class="hero-actions reveal-up" style="--d:0.85s">
+        <a href="/denuncia" class="btn-primary">
+          <span class="btn-bg"></span>
+          <span class="btn-text">Fazer Denúncia</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <a href="#casos" class="btn-ghost">
+          <span>Ver Resultados</span>
+        </a>
+      </div>
+
+      <div class="hero-stats reveal-up" style="--d:1s">
+        <div class="stat">
+          <span class="stat-num" data-count="170">0</span><span class="stat-suffix">M+</span>
+          <span class="stat-label">Fiscalizados (R$)</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-count="100">0</span><span class="stat-suffix">+</span>
+          <span class="stat-label">Famílias Ajudadas</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-count="14">0</span><span class="stat-suffix"></span>
+          <span class="stat-label">Casos Documentados</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span class="scroll-line"></span>
+      <span class="scroll-text">ROLE PARA DESCOBRIR</span>
+    </div>
+
+    <div class="hero-noise"></div>
+  </section>
+
+  <!-- ═══════════════ MARQUEE ═══════════════ -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>FISCALIZAÇÃO</span><span class="dot">◆</span>
+      <span>TRANSPARÊNCIA</span><span class="dot">◆</span>
+      <span>MOSSORÓ</span><span class="dot">◆</span>
+      <span>DENÚNCIA</span><span class="dot">◆</span>
+      <span>RESULTADO</span><span class="dot">◆</span>
+      <span>FISCALIZAÇÃO</span><span class="dot">◆</span>
+      <span>TRANSPARÊNCIA</span><span class="dot">◆</span>
+      <span>MOSSORÓ</span><span class="dot">◆</span>
+      <span>DENÚNCIA</span><span class="dot">◆</span>
+      <span>RESULTADO</span><span class="dot">◆</span>
+      <span>FISCALIZAÇÃO</span><span class="dot">◆</span>
+      <span>TRANSPARÊNCIA</span><span class="dot">◆</span>
+      <span>MOSSORÓ</span><span class="dot">◆</span>
+      <span>DENÚNCIA</span><span class="dot">◆</span>
+      <span>RESULTADO</span><span class="dot">◆</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SOBRE ═══════════════ -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-left">
+          <div class="section-tag reveal-fade">— 01 / Sobre</div>
+          <h2 class="section-title reveal-up">
+            Eu sou<br><em>Cabo Deyvison.</em>
+          </h2>
+          <div class="sobre-roles reveal-up">
+            <span>Pré-candidato a Deputado Federal</span>
+            <span>Vereador de Mossoró</span>
+            <span>Policial Militar do BEPI-CE</span>
+          </div>
+          <p class="sobre-desc reveal-up">
+            Com apenas <strong>1 ano de mandato</strong>, realizei inúmeras denúncias que anteciparam escândalos e ajudei centenas de famílias desamparadas pelo poder público. Minhas fiscalizações nas UPAs e UBS <strong>anteciparam a Operação Mederi</strong> — investigação da Polícia Federal que revelou desvios milionários na saúde de Mossoró.
+          </p>
+          <p class="sobre-desc sobre-perseguicao reveal-up">
+            <span class="alert-icon">⚠</span>
+            Por fiscalizar, fui perseguido: processado por aliados do prefeito, contas bloqueadas, impedido de concorrer pelo MDB, e ameaçado de morte por facção criminosa. Fui para o PL para continuar a luta.
+          </p>
+        </div>
+
+        <div class="sobre-right reveal-fade">
+          <div class="sobre-img-wrap">
+            <img src="images/cabo-deyvison.jpg" alt="Cabo Deyvison" class="sobre-img" loading="lazy" />
+            <div class="sobre-img-overlay"></div>
+            <div class="sobre-img-badge">
+              <span class="badge-year">1</span>
+              <span>ano de<br>mandato</span>
+            </div>
+          </div>
+
+          <div class="sobre-metrics">
+            <div class="metric-card">
+              <span class="metric-val">R$170M<span class="metric-plus">+</span></span>
+              <span class="metric-label">Fiscalizados</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-val">100<span class="metric-plus">+</span></span>
+              <span class="metric-label">Famílias ajudadas</span>
+            </div>
+            <div class="metric-card accent-card">
+              <span class="metric-val">100<span class="metric-pct">%</span></span>
+              <span class="metric-label">Compromisso</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROPOSTAS ═══════════════ -->
+  <section id="propostas">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal-fade">— 02 / Propostas</div>
+        <h2 class="section-title reveal-up">Projetos para o<br><em>Brasil que Funciona</em></h2>
+        <p class="section-desc reveal-up">Cinco propostas concretas baseadas na experiência real de quem fiscaliza o poder público.</p>
+      </div>
+
+      <div class="propostas-list">
+
+        <div class="proposta-item reveal-slide" data-index="01">
+          <div class="proposta-header">
+            <div class="proposta-meta">
+              <span class="proposta-type">PEC</span>
+              <span class="proposta-num">01</span>
+            </div>
+            <h3 class="proposta-title">15% da RCL para o SUS</h3>
+            <span class="proposta-toggle">+</span>
+          </div>
+          <div class="proposta-body">
+            <p>Constitucionaliza o piso mínimo de 15% da Receita Corrente Líquida da União para a saúde pública, garantindo financiamento estável e protegido contra cortes.</p>
+            <div class="proposta-points">
+              <div class="point"><span class="point-dot"></span>15% da RCL da União obrigatoriamente para saúde</div>
+              <div class="point"><span class="point-dot"></span>Veda desvio de recursos para outras finalidades</div>
+              <div class="point"><span class="point-dot"></span>Suspensão automática para gestores que descumprirem</div>
+              <div class="point"><span class="point-dot"></span>TCU fiscalizará anualmente todos os entes</div>
+            </div>
+            <div class="proposta-impact">
+              <strong>Impacto:</strong> Fim do subfinanciamento crônico do SUS. Recursos protegidos na Constituição.
+            </div>
+          </div>
+        </div>
+
+        <div class="proposta-item reveal-slide" data-index="02">
+          <div class="proposta-header">
+            <div class="proposta-meta">
+              <span class="proposta-type">PL</span>
+              <span class="proposta-num">02</span>
+            </div>
+            <h3 class="proposta-title">PNACS — Fim das Filas do SUS</h3>
+            <span class="proposta-toggle">+</span>
+          </div>
+          <div class="proposta-body">
+            <p>Cria prazos máximos legais para atendimento no SUS. Se o Estado não cumprir, o paciente recebe voucher para rede privada imediatamente.</p>
+            <div class="proposta-points">
+              <div class="point"><span class="point-dot"></span>Consulta especialista: máximo 30 dias</div>
+              <div class="point"><span class="point-dot"></span>Cirurgias eletivas: máximo 60 dias</div>
+              <div class="point"><span class="point-dot"></span>Voucher de Saúde Emergencial se prazo estourar</div>
+              <div class="point"><span class="point-dot"></span>Painel Nacional de Filas em tempo real</div>
+            </div>
+            <div class="proposta-impact">
+              <strong>Impacto:</strong> Ninguém mais morre na fila do SUS. O Estado tem prazo — se falhar, paga a conta.
+            </div>
+          </div>
+        </div>
+
+        <div class="proposta-item reveal-slide" data-index="03">
+          <div class="proposta-header">
+            <div class="proposta-meta">
+              <span class="proposta-type">PL</span>
+              <span class="proposta-num">03</span>
+            </div>
+            <h3 class="proposta-title">Retaguarda Jurídica Policial</h3>
+            <span class="proposta-toggle">+</span>
+          </div>
+          <div class="proposta-body">
+            <p>Garante defesa jurídica integral e gratuita aos policiais que respondem processos por atos legítimos de serviço.</p>
+            <div class="proposta-points">
+              <div class="point"><span class="point-dot"></span>Defesa técnica do inquérito ao trânsito em julgado</div>
+              <div class="point"><span class="point-dot"></span>Fundo de Amparo à Retaguarda Policial (FARP)</div>
+              <div class="point"><span class="point-dot"></span>Proteção para PM, PC, PRF, PF e Bombeiros</div>
+            </div>
+            <div class="proposta-impact">
+              <strong>Impacto:</strong> Policial que age em nome do Estado não será mais abandonado.
+            </div>
+          </div>
+        </div>
+
+        <div class="proposta-item reveal-slide" data-index="04">
+          <div class="proposta-header">
+            <div class="proposta-meta">
+              <span class="proposta-type">PL</span>
+              <span class="proposta-num">04</span>
+            </div>
+            <h3 class="proposta-title">Marco da Liberdade Energética</h3>
+            <span class="proposta-toggle">+</span>
+          </div>
+          <div class="proposta-body">
+            <p>Elimina a burocracia e garante segurança jurídica total para investimentos em energia solar, eólica e marítima no Brasil.</p>
+            <div class="proposta-points">
+              <div class="point"><span class="point-dot"></span>Licenciamento por Adesão automático</div>
+              <div class="point"><span class="point-dot"></span>Zona Especial no Semiárido e Costa Norte</div>
+              <div class="point"><span class="point-dot"></span>Estabilidade contratual de 30 anos</div>
+            </div>
+            <div class="proposta-impact">
+              <strong>Impacto:</strong> RN tem o melhor sol e vento do mundo. Bilhões em investimentos sem medo do Estado.
+            </div>
+          </div>
+        </div>
+
+        <div class="proposta-item reveal-slide" data-index="05">
+          <div class="proposta-header">
+            <div class="proposta-meta">
+              <span class="proposta-type">PL</span>
+              <span class="proposta-num">05</span>
+            </div>
+            <h3 class="proposta-title">PNGCE — Continuidade Educacional</h3>
+            <span class="proposta-toggle">+</span>
+          </div>
+          <div class="proposta-body">
+            <p>Se a escola fechar por qualquer motivo, o Estado tem obrigação imediata de garantir alternativa. Inclui voucher educacional emergencial.</p>
+            <div class="proposta-points">
+              <div class="point"><span class="point-dot"></span>Escola interditada = solução imediata</div>
+              <div class="point"><span class="point-dot"></span>Crianças atípicas com auxiliar garantido</div>
+              <div class="point"><span class="point-dot"></span>Gestor omisso perde repasses</div>
+            </div>
+            <div class="proposta-impact">
+              <strong>Impacto:</strong> Nenhuma criança fica sem aula por falha do poder público.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="propostas-footer reveal-fade">
+        <span class="tag-line">Propostas prontas para o Congresso Nacional em 2027</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FISCALIZAÇÃO ═══════════════ -->
+  <section id="fiscalizacao">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal-fade">— 03 / Fiscalização</div>
+        <h2 class="section-title reveal-up">O que a prefeitura<br><em>não quer que você veja.</em></h2>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="dash-card big reveal-fade">
+          <span class="dash-label">Total de Denúncias</span>
+          <span class="dash-num" data-count="2547">0</span>
+          <span class="dash-trend up">↑ +12% este mês</span>
+        </div>
+        <div class="dash-card reveal-fade">
+          <span class="dash-label">Taxa de Resolução</span>
+          <span class="dash-num" data-count="87"><span style="font-size:0.5em">%</span></span>
+          <span class="dash-trend up">↑ +5% este mês</span>
+        </div>
+        <div class="dash-card reveal-fade">
+          <span class="dash-label">Tempo Médio</span>
+          <span class="dash-num-text">4.2<small>dias</small></span>
+          <span class="dash-trend up">↑ −2 dias</span>
+        </div>
+        <div class="dash-card reveal-fade">
+          <span class="dash-label">Bairros Atendidos</span>
+          <span class="dash-num" data-count="32">0</span>
+          <span class="dash-trend">Mossoró/RN</span>
+        </div>
+      </div>
+
+      <div class="casos-destaque">
+        <h3 class="reveal-up">Casos em Destaque</h3>
+
+        <div class="casos-reel">
+
+          <div class="caso-card reveal-slide">
+            <div class="caso-thumb" style="background:linear-gradient(135deg,#1a0a00,#3d1500)">
+              <span class="caso-emoji">🏥</span>
+            </div>
+            <div class="caso-info">
+              <span class="caso-tag saude">Saúde</span>
+              <h4>Operação Mederi</h4>
+              <p>Minhas denúncias sobre o caos nas UPAs anteciparam operação da Polícia Federal que revelou desvios milionários.</p>
+              <a href="https://instagram.com/cabodeyvison" target="_blank" class="caso-link">Ver no Instagram →</a>
+            </div>
+          </div>
+
+          <div class="caso-card reveal-slide">
+            <div class="caso-thumb" style="background:linear-gradient(135deg,#00100a,#003d1e)">
+              <span class="caso-emoji">💰</span>
+            </div>
+            <div class="caso-info">
+              <span class="caso-tag licitacao">Licitação</span>
+              <h4>R$150M sem concorrência</h4>
+              <p>Licitações na infraestrutura sempre com as mesmas empresas. Aditivos de mais de 20% em cada contrato.</p>
+              <a href="https://www.instagram.com/reel/DSIudcUkZUb/" target="_blank" class="caso-link">Ver no Instagram →</a>
+            </div>
+          </div>
+
+          <div class="caso-card reveal-slide">
+            <div class="caso-thumb" style="background:linear-gradient(135deg,#0a0015,#1e003d)">
+              <span class="caso-emoji">🔧</span>
+            </div>
+            <div class="caso-info">
+              <span class="caso-tag infra">Superfaturamento</span>
+              <h4>Tubo de R$89 por R$640</h4>
+              <p>Prefeitura pagou R$ 640 em um tubo que eu comprei por R$ 89. O mesmo produto. Dinheiro público jogado fora.</p>
+              <a href="https://www.instagram.com/reel/DSIudcUkZUb/" target="_blank" class="caso-link">Ver no Instagram →</a>
+            </div>
+          </div>
+
+          <div class="caso-card reveal-slide">
+            <div class="caso-thumb" style="background:linear-gradient(135deg,#100000,#3d0000)">
+              <span class="caso-emoji">🎯</span>
+            </div>
+            <div class="caso-info">
+              <span class="caso-tag seguranca">Segurança</span>
+              <h4>Levei tiros apagando pichações</h4>
+              <p>Fui surpreendido com tiros de facção quando apagava pichações em escola pública no bairro Aeroporto.</p>
+              <a href="https://www.instagram.com/reel/DXutZv0x33r/" target="_blank" class="caso-link">Ver no Instagram →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CASOS / TIMELINE ═══════════════ -->
+  <section id="casos">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal-fade">— 04 / Casos Reais</div>
+        <h2 class="section-title reveal-up">1 ano de mandato.<br><em>Resultados concretos.</em></h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item resolved reveal-slide">
+          <div class="tl-indicator"><span class="tl-dot"></span><span class="tl-status">Resolvido</span></div>
+          <div class="tl-content">
+            <span class="tl-cat">Saúde</span>
+            <h4>Pacientes psiquiátricos em UPA</h4>
+            <p>Transferidos para o local adequado após intervenção direta.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item ongoing reveal-slide">
+          <div class="tl-indicator"><span class="tl-dot"></span><span class="tl-status">Em andamento</span></div>
+          <div class="tl-content">
+            <span class="tl-cat">Licitação</span>
+            <h4>Superfaturamento Estação Natal</h4>
+            <p>R$3M+ para decoração com empresa investigada por corrupção. CEI requerida na Câmara.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item resolved reveal-slide">
+          <div class="tl-indicator"><span class="tl-dot"></span><span class="tl-status">Resolvido</span></div>
+          <div class="tl-content">
+            <span class="tl-cat">Infraestrutura</span>
+            <h4>Buraco de 1 ano nas Barrocas</h4>
+            <p>Eu mesmo consertei. No dia seguinte, a prefeitura apareceu para fiscalizar o que ela nunca fez.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item resolved reveal-slide">
+          <div class="tl-indicator"><span class="tl-dot"></span><span class="tl-status">Resolvido</span></div>
+          <div class="tl-content">
+            <span class="tl-cat">Ação Social</span>
+            <h4>Caso Seu Dedé — Idoso Resgatado</h4>
+            <p>Senhor desaparecido localizado na mata após mobilização do mandato.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item ongoing reveal-slide">
+          <div class="tl-indicator"><span class="tl-dot"></span><span class="tl-status">Em andamento</span></div>
+          <div class="tl-content">
+            <span class="tl-cat">Licitação</span>
+            <h4>Escritório Fantasma em Natal</h4>
+            <p>Prefeitura pagando R$10.600/mês em escritório fechado. Superfaturamento de +200%.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item resolved reveal-slide">
+          <div class="tl-indicator"><span class="tl-dot"></span><span class="tl-status">Resolvido</span></div>
+          <div class="tl-content">
+            <span class="tl-cat">Saúde</span>
+            <h4>Caso Anny — 5 dias esperando vaga</h4>
+            <p>Criança com problemas renais conseguiu atendimento após pressão e exposição pública do descaso.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="timeline-cta reveal-fade">
+        <a href="https://instagram.com/cabodeyvison" target="_blank" class="btn-primary">
+          <span class="btn-bg"></span>
+          <span class="btn-text">Ver todos os casos no Instagram</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ DENÚNCIA CTA ═══════════════ -->
+  <section id="denuncia-cta">
+    <canvas id="ctaCanvas"></canvas>
+    <div class="cta-content">
+      <div class="section-tag reveal-fade" style="color:#f97316">— Faça a Diferença</div>
+      <h2 class="cta-title reveal-up">
+        Sua denúncia pode<br><em>mudar Mossoró.</em>
+      </h2>
+      <p class="cta-desc reveal-up">Juntos construímos uma cidade melhor. Cada problema reportado é um passo em direção à mudança.</p>
+      <div class="cta-features reveal-up">
+        <div class="cta-feat"><span class="feat-icon">✓</span><span>100% Gratuito</span></div>
+        <div class="cta-feat"><span class="feat-icon">⚡</span><span>Resposta em 24h</span></div>
+        <div class="cta-feat"><span class="feat-icon">🔒</span><span>Anônimo se preferir</span></div>
+      </div>
+      <a href="/denuncia" class="btn-primary large reveal-up">
+        <span class="btn-bg"></span>
+        <span class="btn-text">Denunciar Agora</span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-noise"></div>
+  </section>
+
+  <!-- ═══════════════ CONTATO ═══════════════ -->
+  <section id="contato">
+    <div class="container">
+      <div class="contato-grid">
+        <div class="contato-left reveal-up">
+          <div class="section-tag">— Quer que eu visite sua cidade?</div>
+          <h2 class="section-title">Vamos trabalhar<br><em>juntos.</em></h2>
+          <p>Me diga o que eu, como Deputado Federal, poderia ajudar no desenvolvimento da sua cidade. Cada mensagem é lida pessoalmente.</p>
+          <div class="contato-links">
+            <a href="https://instagram.com/cabodeyvison" target="_blank" class="c-link">Instagram @cabodeyvison</a>
+            <a href="https://wa.me/5584996981813" target="_blank" class="c-link">(84) 99698-1813</a>
+            <a href="mailto:contato@cabodeyvison.com" class="c-link">contato@cabodeyvison.com</a>
+          </div>
+        </div>
+        <div class="contato-right reveal-fade">
+          <form class="contato-form" id="contatoForm">
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="form-group">
+              <label>Cidade / Município</label>
+              <input type="text" placeholder="Sua cidade" required />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp</label>
+              <input type="tel" placeholder="(00) 00000-0000" />
+            </div>
+            <div class="form-group">
+              <label>Qual o maior problema que um Deputado Federal poderia resolver na sua cidade?</label>
+              <textarea placeholder="Descreva o problema..." rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary full">
+              <span class="btn-bg"></span>
+              <span class="btn-text">Quero que você venha!</span>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-cd">CD</span>
+            <span class="logo-text">CABO DEYVISON</span>
+          </div>
+          <p>Plataforma de fiscalização cidadã. Denuncie problemas, acompanhe soluções e ajude a transformar Mossoró.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/cabodeyvison" target="_blank" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://youtube.com/@cabodeyvison" target="_blank" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://wa.me/5584996981813" target="_blank" aria-label="WhatsApp">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <h5>Navegação</h5>
+          <a href="#hero">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#propostas">Propostas</a>
+          <a href="#fiscalizacao">Fiscalização</a>
+          <a href="#casos">Casos</a>
+          <a href="/jogos">🎮 Jogos</a>
+        </div>
+
+        <div class="footer-nav">
+          <h5>Contato</h5>
+          <a href="mailto:contato@cabodeyvison.com">contato@cabodeyvison.com</a>
+          <a href="tel:+5584996981813">(84) 99698-1813</a>
+          <span>Mossoró, RN — Brasil</span>
+        </div>
+
+        <div class="footer-action">
+          <h5>Faça parte</h5>
+          <p>Sua denúncia pode mudar Mossoró.</p>
+          <a href="/denuncia" class="btn-primary">
+            <span class="btn-bg"></span>
+            <span class="btn-text">Denunciar</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <a href="https://chat.whatsapp.com/L1YOZomjYxV7UimtKSqeRQ" target="_blank" class="whatsapp-group">
+            Entrar no Grupo do WhatsApp →
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Cabo Deyvison. Todos os direitos reservados.</span>
+        <div class="footer-legal">
+          <a href="#">Termos de Uso</a>
+          <a href="#">Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5584996981813" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>
